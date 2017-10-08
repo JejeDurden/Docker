@@ -1,0 +1,3 @@
+docker buil -t ex01 .
+docker run -d -p 3000:3000 ex01
+Connecter Teamspeak

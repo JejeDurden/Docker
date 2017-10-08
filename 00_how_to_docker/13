@@ -1,1 +1,1 @@
-docker exec spawning-pool bash -c "env"
+docker exec spawning-pool env

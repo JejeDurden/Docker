@@ -1,1 +1,1 @@
-docker service logs gallant_mestorf
+docker service logs -f engineering-bay
