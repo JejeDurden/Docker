@@ -1,4 +1,14 @@
 FROM ruby
 
-RUN apt-get update && apt-get install nodejs -y && gem install rails -v 5.0.2 && rails new server && cd server && bundle && rake db:migrate && rake db:seed
-WORKDIR /opt/app
+RUN apt-get update -y && \
+    apt-get upgrade -y && \
+	apt-get install nodejs -y && \
+	gem install rails bundler
+
+ONBUILD WORKDIR /opt
+
+ONBUILD RUN rails new app
+ONBUILD WORKDIR /opt/app
+ONBUILD RUN bundle install
+ONBUILD RUN rails generate migration CreateProducts name:string
+ONBUILD RUN rake db:migrate
