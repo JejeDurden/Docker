@@ -1,14 +1,9 @@
 FROM ruby
 
-RUN apt-get update -y && \
-    apt-get upgrade -y && \
-	apt-get install nodejs -y && \
-	gem install rails bundler
+RUN apt-get update -y && apt-get upgrade -y && \
+	apt-get install nodejs -y && gem install rails bundler && mkdir -p /opt/app
 
-ONBUILD WORKDIR /opt
-
-ONBUILD RUN rails new app
+ONBUILD COPY . /opt/app
 ONBUILD WORKDIR /opt/app
-ONBUILD RUN bundle install
-ONBUILD RUN rails generate migration CreateProducts name:string
-ONBUILD RUN rake db:migrate
+ONBUILD EXPOSE 3000
+ONBUILD RUN bundle install && rake db:migrate && rake db:seed

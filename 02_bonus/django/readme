@@ -1,0 +1,7 @@
+docker-compose run web django-admin.py startproject app .
+
+# change allowed host to IP de Char
+# save, close and run
+docker-compose up
+
+>>>> go localhost:8000
